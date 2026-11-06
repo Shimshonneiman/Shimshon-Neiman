@@ -29,7 +29,7 @@ search.addEventListener('input',()=>{const q=search.value.toLowerCase().trim();f
 list.addEventListener('change',()=>{if(list.value)email.value=''});email.addEventListener('input',()=>{if(email.value.trim())list.value=''});
 $('tgSendDemoRequest').addEventListener('click',()=>{if(!$('tgTherapistConsent').checked){status.textContent='Please confirm your permission first.';return}
 if(list.value){try{sessionStorage.setItem('theragift-demo-link','pending')}catch(e){}status.textContent='Demo request prepared for a fictional registered therapist. Open the therapist inbox to confirm it. No information about your appeal was shared.';return}
-if(email.value.trim()){const ok=/^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/.test(email.value.trim());status.textContent=ok?'An invitation would be queued securely at launch. In this preview NO EMAIL was sent or saved.':'Enter a valid professional email for this demonstration.';email.value='';return}
+if(email.value.trim()){const ok=/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value.trim());status.textContent=ok?'An invitation would be queued securely at launch. In this preview NO EMAIL was sent or saved.':'Enter a valid professional email for this demonstration.';email.value='';return}
 status.textContent='Choose a registered therapist or enter an invitation email.'});
 try{const previous=sessionStorage.getItem('theragift-demo-link');if(previous==='accepted')status.textContent='A fictional therapist has confirmed your demonstration request in this browser session.';else if(previous==='pending')status.textContent='Fictional request awaiting a response in the therapist walkthrough.'}catch(e){}
 })();</script></body></html>
