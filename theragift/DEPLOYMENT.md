@@ -12,7 +12,7 @@ The current project is plain HTML, CSS and JavaScript. It has no build command a
 4. Add no database, payment, email or authentication secrets.
 5. Keep this deployment as a fictional, noindex preview. Do not invite clients or therapists to use it for real cases.
 
-The provided `vercel.json` maps `/client`, `/therapist` and `/profile` to their HTML pages, and adds noindex and browser security headers. The homepage contains the 60 fictional demo cases; the separate `profiles-data.js` file supports the profile walkthrough data.
+The provided `vercel.json` maps `/client`, `/client/portal`, `/therapist`, `/therapist/portal` and `/profile` to their HTML pages. It adds noindex and browser security headers, including a restrictive Content Security Policy that blocks network connections from the demo pages. The homepage contains the fictional demo cases; the separate `profiles-data.js` file supports the profile walkthrough data.
 
 ### Local preview
 

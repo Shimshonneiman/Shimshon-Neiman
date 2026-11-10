@@ -9,8 +9,16 @@
       "destination": "/client.html"
     },
     {
+      "source": "/client/portal",
+      "destination": "/client-portal.html"
+    },
+    {
       "source": "/therapist",
       "destination": "/therapist.html"
+    },
+    {
+      "source": "/therapist/portal",
+      "destination": "/therapist-portal.html"
     },
     {
       "source": "/profile",

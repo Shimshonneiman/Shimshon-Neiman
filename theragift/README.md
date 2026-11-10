@@ -5,8 +5,8 @@ An independent, static-first TheraGift website for exploring psychotherapy spons
 ## What is included
 
 - Donor homepage with cause browsing, fictional sample profiles, profile details and local-only story suggestions.
-- Client story application walkthrough with privacy prompts, fictional story examples, visibility choices, therapist lookup and a tab-session request flow.
-- Therapist registration and portal walkthrough with fictional verification, connection requests and session confirmation examples.
+- Client story application walkthrough with privacy prompts, fictional story examples, visibility choices, therapist lookup and a tab-session request flow; plus a separate fictional client dashboard.
+- Therapist registration and portal walkthrough with fictional verification, connection requests and session confirmation examples; plus a separate therapist dashboard.
 - TheraGift's original wordmark and colours, responsive page layouts, and Vercel clean routes.
 - Deployment and production architecture notes in `DEPLOYMENT.md`.
 
@@ -17,7 +17,10 @@ theragift/
 ├── index.html                     Donor homepage and fictional profile catalogue
 ├── profile.html                   Fictional profile detail page
 ├── client.html                    Client application and portal walkthrough
+├── client-portal.html             Fictional client dashboard
 ├── therapist.html                 Therapist registration and portal walkthrough
+├── therapist-portal.html          Fictional therapist dashboard
+├── portal.css                     Shared dashboard styles
 ├── discovery-v09.css              Donor cause discovery styles
 ├── donor-story-match.js           Local-only story suggestion logic
 ├── profiles-data.js               Fictional profile catalogue
@@ -39,7 +42,7 @@ From the repository root:
 python3 -m http.server 8000 --directory theragift
 ```
 
-Then open `http://localhost:8000`. The pages can also be opened as files, but a local server better matches hosted routes. Use `/client`, `/therapist` and `/profile#TG-101` on Vercel; local preview can use `/client.html`, `/therapist.html` and `/profile.html#TG-101`.
+Then open `http://localhost:8000`. The pages can also be opened as files, but a local server better matches hosted routes. Use `/client`, `/client/portal`, `/therapist`, `/therapist/portal` and `/profile#TG-101` on Vercel; local preview can use the matching `.html` pages and `/profile.html#TG-101`.
 
 ## Demo privacy and limits
 
