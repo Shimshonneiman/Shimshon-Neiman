@@ -26,4 +26,5 @@ The connected Vercel user reports `defaultTeamId: null`, zero accessible teams a
 
 ## Verify after deploying
 
-Check `/`, `/client`, `/therapist`, `/profile` and an example link opened from `/`. Test mobile navigation and donor keyword match results. Confirm static noindex response headers. Do not enable real signup or payment collection.
+Check `/`, `/client`, `/client/portal`, `/therapist`, `/therapist/portal`, `/profile` and an example link opened from `/`. Test mobile navigation and donor keyword match results. Confirm static noindex and Content Security Policy response headers. Do not enable real signup or payment collection.
+
