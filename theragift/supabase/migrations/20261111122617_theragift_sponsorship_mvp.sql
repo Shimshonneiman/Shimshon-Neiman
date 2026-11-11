@@ -33,7 +33,7 @@ create table public.therapist_applications (
   registration_body text not null check (char_length(registration_body) between 2 and 120),
   registration_number text not null check (char_length(registration_number) between 2 and 120),
   professional_email text not null check (char_length(professional_email) <= 254),
-  status text not null default 'submitted' check (status in ('submitted', 'under-review', 'verified', 'declined', 'suspended')),
+  status text not null default 'submitted' check (status in ('submitted', 'under-review', 'verified', 'declined', 'suspended', 'withdrawn')),
   created_at timestamptz not null default now()
 );
 
@@ -119,11 +119,14 @@ alter table public.session_reports enable row level security;
 
 grant select, insert, update on public.user_profiles to authenticated;
 grant select, insert on public.client_applications to authenticated;
+grant update (status) on public.client_applications to authenticated;
 grant select, insert on public.therapist_applications to authenticated;
+grant update (status) on public.therapist_applications to authenticated;
 grant select on public.therapist_verifications to authenticated;
 grant select on public.public_therapist_directory to anon, authenticated;
 grant select on public.public_campaigns to anon, authenticated;
 grant select, insert on public.sponsorship_interests to authenticated;
+grant update (status) on public.sponsorship_interests to authenticated;
 grant select, insert on public.therapist_requests to authenticated;
 grant update (status, therapist_responded_at) on public.therapist_requests to authenticated;
 grant select, insert on public.session_reports to authenticated;
@@ -145,6 +148,10 @@ create policy "client reads own applications"
 create policy "client submits own application"
   on public.client_applications for insert to authenticated
   with check ((select auth.uid()) = client_id and status = 'submitted');
+create policy "client withdraws own unreviewed application"
+  on public.client_applications for update to authenticated
+  using ((select auth.uid()) = client_id and status = 'submitted')
+  with check ((select auth.uid()) = client_id and status = 'withdrawn');
 
 create policy "therapist reads own application"
   on public.therapist_applications for select to authenticated
@@ -152,6 +159,10 @@ create policy "therapist reads own application"
 create policy "therapist submits own application"
   on public.therapist_applications for insert to authenticated
   with check ((select auth.uid()) = therapist_id and status = 'submitted');
+create policy "therapist withdraws own unreviewed registration"
+  on public.therapist_applications for update to authenticated
+  using ((select auth.uid()) = therapist_id and status = 'submitted')
+  with check ((select auth.uid()) = therapist_id and status = 'withdrawn');
 
 create policy "therapist reads own verification result"
   on public.therapist_verifications for select to authenticated
@@ -178,6 +189,10 @@ create policy "donor records own non-payment interest"
       where c.id = campaign_id and c.status = 'published'
     )
   );
+create policy "donor withdraws own sponsorship interest"
+  on public.sponsorship_interests for update to authenticated
+  using ((select auth.uid()) = donor_id and status = 'interested')
+  with check ((select auth.uid()) = donor_id and status = 'withdrawn');
 
 create policy "client reads own therapist requests"
   on public.therapist_requests for select to authenticated
