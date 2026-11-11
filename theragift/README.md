@@ -28,6 +28,8 @@ theragift/
 ├── v08-donor.js                   Donor homepage interactions
 ├── v08-profiles.js                Profile detail interactions
 ├── vercel.json                    Clean routes and preview response headers
+├── _redirects                     Clean routes for Cloudflare Pages
+├── _headers                       Noindex and browser security headers on Cloudflare Pages
 ├── README.md                      Project and local setup
 └── DEPLOYMENT.md                  Hosting instructions and production requirements
 ```
@@ -42,7 +44,7 @@ From the repository root:
 python3 -m http.server 8000 --directory theragift
 ```
 
-Then open `http://localhost:8000`. The pages can also be opened as files, but a local server better matches hosted routes. Use `/client`, `/client/portal`, `/therapist`, `/therapist/portal` and `/profile#TG-101` on Vercel; local preview can use the matching `.html` pages and `/profile.html#TG-101`.
+Then open `http://localhost:8000`. The pages can also be opened as files, but a local server better matches hosted routes. Use `/client`, `/client/portal`, `/therapist`, `/therapist/portal` and `/profile#TG-101` on Vercel or Cloudflare Pages; local preview can use the matching `.html` pages and `/profile.html#TG-101`.
 
 ## Demo privacy and limits
 

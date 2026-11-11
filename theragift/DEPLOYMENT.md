@@ -14,6 +14,16 @@ The current project is plain HTML, CSS and JavaScript. It has no build command a
 
 The provided `vercel.json` maps `/client`, `/client/portal`, `/therapist`, `/therapist/portal` and `/profile` to their HTML pages. It adds noindex and browser security headers, including a restrictive Content Security Policy that blocks network connections from the demo pages. The homepage contains the fictional demo cases; the separate `profiles-data.js` file supports the profile walkthrough data.
 
+### Cloudflare Pages
+
+The project also includes `_redirects` and `_headers`, which provide the same clean routes and noindex/security headers on Cloudflare Pages. For a later local deployment with Wrangler, from the repository root:
+
+```bash
+npx wrangler pages deploy theragift --project-name=theragift-staging --branch=theragift-vercel-staging
+```
+
+Wrangler must be authenticated to the Cloudflare account with Pages edit access. This command deploys the fictional preview; it does not configure a database, authentication or payments.
+
 ### Local preview
 
 ```bash

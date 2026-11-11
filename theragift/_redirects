@@ -1,0 +1,5 @@
+/client /client.html 200
+/client/portal /client-portal.html 200
+/therapist /therapist.html 200
+/therapist/portal /therapist-portal.html 200
+/profile /profile.html 200
